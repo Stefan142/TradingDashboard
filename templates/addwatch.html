@@ -1,0 +1,48 @@
+{% extends "layout-sidenav-dark.html" %}
+
+{% block title %}InvestCraft - add to watchlist{% endblock %}
+
+{% block page_content %}
+<div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+        <main>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header">
+                                <h2 class="text-center font-weight-light my-4 text-danger">{{apology}}</h2>
+                                <h3 class="text-center font-weight-light my-4">Add symbol to watchlist</h3>
+                            </div>
+                            <div class="card-body">
+                                <form action="/addwatch" method="POST" id="stock-form">
+                                    <div id="stock-input-container">
+                                        <div class="stock-input form-floating mb-3">
+                                            <input class="form-control" id="stock1" type="text" name="stock1"
+                                                placeholder="Enter stock symbol" />
+                                            <label for="stock1">Stock Symbol 1</label>
+                                        </div>
+
+                                        <!-- Additional stock inputs will be added here dynamically -->
+                                    </div>
+
+                                    <!-- Buttons at the bottom -->
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-success custom-btn"
+                                            onclick="addStockInput()">+</button>
+                                        <button type="button" class="btn btn-danger custom-btn"
+                                            onclick="deleteLastStockInput()">-</button>
+                                    </div>
+
+                                    <button type="submit" onclick="submitForm()"
+                                        class="btn btn-primary float-end">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "layout-sidenav-dark.html" %}
+
+{% block title %}InvestCraft - Simulation{% endblock %}
+
+{% block page_content %}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Simulation for {{stock}}</h1>
+        <h2 class="mt-4">from {{begin}} until {{end}}</h2>
+        <div class="row">
+            <div class="col-xl-6" style="height: 500px;">
+                <div class="card mb-4" id="mydiv" style="height: 400px; width: 700px;">
+                    <div id="mydivheader" class="card-header">
+                        <i class="fas fa-chart-area me-1"></i>
+                        {{stock}} chart
+                    </div>
+                    <!-- Lightweight Charts Widget BEGIN -->
+                    <!--S.O. to Discchord on reddit-->
+                    <input type="hidden" id="my_variable" value="{{ bartime }}">
+                    <div id="tvchart"></div>
+
+                    <!-- Lightweight Charts Widget END -->
+                </div>
+            </div>
+            <div class="col-xl-6 d-flex justify-content-end" style="height: 500px;">
+                <div class="card mb-4 draggable news-card-container" id="mydiv2"
+                    style="height: 500px; overflow-y: auto; width: 450px;">
+                    <div class="card-header" id="mydiv2header">
+                        <i class="fas fa-chart-bar me-1"></i>
+                        Top news
+                    </div>
+
+                    <!-- Style the news container -->
+                    <!-- Style the news container -->
+                    <div class="news-container">
+                        {% for item in news_items %}
+                        <div class="news-item">
+                            <h4>
+                                <a href="{{ item['url'] }}" target="_blank">
+                                    {{ item['title'] }}
+                                </a>
+                            </h4>
+                            <div class="description" id="desc_{{ loop.index }}">
+                                <span class="hidden-text"><strong>Description:</strong> {{ item['description'] }}</span>
+                            </div>
+                            <button class="btn btn-success expand-button" onclick="toggleDescription({{ loop.index }})">
+                                <div class="expand-icon"><i class="fa-solid fa-arrow-down"></i></div>
+                                Show description
+                            </button>
+
+                            <p><strong>Time Published:</strong> {{ item['time_published'] }}</p>
+                            <hr>
+                        </div>
+                        {% endfor %}
+                        <p><strong>Total items:</strong> {{ total_items }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,8 @@
+flask
+Werkzeug
+jinja2
+flask-sqlalchemy
+sqlalchemy 
+alpaca-trade-api
+lightweight-charts
+
